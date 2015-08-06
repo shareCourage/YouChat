@@ -1,0 +1,58 @@
+//
+//  YouChat.pch
+//  YouChat
+//
+//  Created by Kowloon on 15/7/16.
+//  Copyright (c) 2015年 Goome. All rights reserved.
+//
+
+#ifndef YouChat_YouChat_pch
+#define YouChat_YouChat_pch
+
+
+#define YC_TitleOfMe                @"Me"
+#define YC_TitleOfContacts          @"Contacts"
+#define YC_TitleOfYouChat           @"YouChat"
+#define YC_TitleOfLogin             @"登录"
+#define YC_TitleOfConnectServer     @"连接服务器"
+#define YC_TitleOfRegister          @"注册"
+#define YC_TitleOfOtherWayOfLogin   @"其它方式登录"
+
+#define YC_TitleOfIcon              @"头像"
+#define YC_TitleOfNickname          @"昵称"
+#define YC_TitleOfAccount           @"账号"
+#define YC_TitleOfCompany           @"公司"
+#define YC_TitleOfDepartment        @"部门"
+#define YC_TitleOfPosition          @"职位"
+#define YC_TitleOfTelephone         @"电话"
+#define YC_TitleOfEmail             @"邮件"
+
+#define YC_TagOfLoginSuccess        @"SuccessOfLoginTag"
+
+
+
+#define iOS(version) ([[[UIDevice currentDevice] systemVersion] floatValue] >= version)
+#define iOS5 iOS(5.0f)
+#define iOS6 iOS(6.0f)
+#define iOS7 iOS(7.0f)
+#define YC_WS(weakSelf) __weak __typeof(&*self)weakSelf = self;
+#define YC_UserDefaults [NSUserDefaults standardUserDefaults]
+
+#ifdef DEBUG
+
+#define YCLog(...) NSLog(@"%s %d \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
+
+#else
+#define YCLog(...)
+
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import "CategoryWF.h"
+#import "YCUserInfo.h"
+#import "YCXMPPTool.h"
+#endif
+
+
+#endif
