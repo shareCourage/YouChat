@@ -12,6 +12,6 @@
 
 @property (nonatomic, copy)NSString *editTitle;
 
++ (instancetype)cellWithTableView:(UITableView *)tableView placeholder:(NSString *)placeholder;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
-
 @end

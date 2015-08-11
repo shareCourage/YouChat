@@ -23,6 +23,7 @@
 @end
 
 @implementation YCBaseCell
+
 - (UIImageView *)rightImageView
 {
     if (_rightImageView == nil) {
@@ -106,16 +107,26 @@
         self.selectionStyle = UITableViewCellSelectionStyleDefault;
     }
 }
-+ (instancetype)cellWithTableView:(UITableView *)tableView
++ (instancetype)cellWithTableView:(UITableView *)tableView style:(UITableViewCellStyle)style
 {
     static NSString *ID = @"base";
     YCBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (!style) style = UITableViewCellStyleDefault;
     if (cell == nil) {
-        cell = [[YCBaseCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
+        cell = [[YCBaseCell alloc] initWithStyle:style reuseIdentifier:ID];
     }
     return cell;
 }
-
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        self.imageView.layer.cornerRadius = 10;
+        self.imageView.layer.masksToBounds = YES;
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return self;
+}
 @end
 
 

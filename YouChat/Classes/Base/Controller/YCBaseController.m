@@ -53,7 +53,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    YCBaseCell *cell = [YCBaseCell cellWithTableView:tableView];
+    YCBaseCell *cell = [YCBaseCell cellWithTableView:tableView style:UITableViewCellStyleValue1];
     YCBaseGroup *group = self.dataSource[indexPath.section];
     cell.item = group.items[indexPath.row];
     

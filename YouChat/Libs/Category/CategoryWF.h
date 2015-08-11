@@ -16,4 +16,5 @@
 #import "UITextField+WF.h"
 #import "UIScreen+WF.h"
 #import "MBProgressHUD+HM.h"
+#import "NSString+PHCategory.h"
 #endif

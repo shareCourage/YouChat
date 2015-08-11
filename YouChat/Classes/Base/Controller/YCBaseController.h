@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class YCBaseItem;
 
 @interface YCBaseController : UITableViewController
+
+
 @property(nonatomic, strong)NSMutableArray *dataSource;
+
+- (void)pushVCWithClass:(Class)destClass settingItem:(YCBaseItem *)item;
+
 @end

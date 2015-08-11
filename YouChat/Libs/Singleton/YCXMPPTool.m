@@ -48,7 +48,7 @@ singleton_implementation(YCXMPPTool)
     [_avatar activate:_xmppStream];
     
     _rosterStorage = [[XMPPRosterCoreDataStorage alloc] init];
-    _roster = [[XMPPRoster alloc] initWithRosterStorage:_rosterStorage];
+    _roster = [[XMPPRoster alloc] initWithRosterStorage:_rosterStorage ];
     [_roster activate:_xmppStream];
 }
 
@@ -176,7 +176,7 @@ singleton_implementation(YCXMPPTool)
 #pragma mark -XMPPStream的代理
 #pragma mark 与主机连接成功
 -(void)xmppStreamDidConnect:(XMPPStream *)sender{
-    YCLog(@"与主机连接成功");
+    YCLog(@"与主机连接成功 -> %@", [NSThread currentThread]);
     if ([YCUserInfo sharedYCUserInfo].connectType == YCConnectTypeOfConnectServer) {
         if (self.resultBlock) {
             self.resultBlock(XMPPResultTypeConnectServiceSuccess);

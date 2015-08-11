@@ -7,8 +7,9 @@
 //
 
 #import "YCContactsController.h"
-
-@interface YCContactsController ()<NSFetchedResultsControllerDelegate>
+#import "YCAddFriendController.h"
+#import "YCChatDetailController.h"
+@interface YCContactsController ()<NSFetchedResultsControllerDelegate, YCAddFriendControllerDelegate>
 
 @property(nonatomic, strong)NSFetchedResultsController *fetchedResult;
 
@@ -20,9 +21,22 @@
     [super viewDidLoad];
     self.title = YC_TitleOfContacts;
     [self loadPeople];
+    
+    [self rightItemOfAddFriendsImplementation];
 }
-
-
+- (void)rightItemOfAddFriendsImplementation
+{
+    UIImage *rightImage = [UIImage imageNamed:@"contacts_add_friend"];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithImage:rightImage style:UIBarButtonItemStylePlain target:self action:@selector(addFriends)];
+    self.navigationItem.rightBarButtonItem = rightItem;
+}
+- (void)addFriends
+{
+    YCLog(@"addFriends");
+    YCAddFriendController *add = [[YCAddFriendController alloc] init];
+    add.delegate = self;
+    [self.navigationController pushViewController:add animated:YES];
+}
 - (void)loadPeople
 {
     NSManagedObjectContext *context = [YCXMPPTool sharedYCXMPPTool].rosterStorage.mainThreadManagedObjectContext;
@@ -84,6 +98,15 @@
     cell.textLabel.text = friend.jidStr;
     return cell;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    XMPPUserCoreDataStorageObject *friend = self.fetchedResult.fetchedObjects[indexPath.row];
+    YCChatDetailController *chatDetail = [[YCChatDetailController alloc] init];
+    chatDetail.myFriend = friend;
+    [self.navigationController pushViewController:chatDetail animated:YES];
+}
+
 
 //实现这个方法，cell往左滑就会有个delete
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -95,7 +118,14 @@
         [[YCXMPPTool sharedYCXMPPTool].roster removeUser:freindJid];
     }
 }
-
+#pragma mark - YCAddFriendControllerDelegate
+- (void)addFriendController:(YCAddFriendController *)addFriendController didAddUser:(NSString *)user
+{
+    YCLog(@"%@",user);
+    NSString *jidStr = [NSString stringWithFormat:@"%@@%@",user,[YCUserInfo sharedYCUserInfo].domain];
+    XMPPJID *friendJid = [XMPPJID jidWithString:jidStr];
+    [[YCXMPPTool sharedYCXMPPTool].roster subscribePresenceToUser:friendJid];
+}
 
 - (void)dealloc
 {

@@ -18,11 +18,17 @@
 @synthesize editTitle = _editTitle;
 + (instancetype)cellWithTableView:(UITableView *)tableView
 {
+    return [self cellWithTableView:tableView placeholder:nil];
+}
+
++ (instancetype)cellWithTableView:(UITableView *)tableView placeholder:(NSString *)placeholder
+{
     static NSString *ID = @"edit";
     YCEditCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         [tableView registerNib:[UINib nibWithNibName:NSStringFromClass([self class]) bundle:nil] forCellReuseIdentifier:ID];
         cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        cell.editTextField.placeholder = placeholder;
     }
     return cell;
 }

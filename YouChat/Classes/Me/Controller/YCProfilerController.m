@@ -178,6 +178,10 @@
     }
     //更新 这个方法内部会实现数据上传到服务，无需程序自己操作
     [[YCXMPPTool sharedYCXMPPTool].vCardTempModule updateMyvCardTemp:vCardTemp];
+    
+    if ([self.delegate respondsToSelector:@selector(profilerControllerDidChanged:)]) {
+        [self.delegate profilerControllerDidChanged:self];
+    }
 }
 
 

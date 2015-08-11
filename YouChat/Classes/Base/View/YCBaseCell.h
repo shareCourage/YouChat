@@ -12,6 +12,6 @@
 
 @property(nonatomic, strong)YCBaseItem *item;
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView;
++ (instancetype)cellWithTableView:(UITableView *)tableView style:(UITableViewCellStyle)style;
 
 @end

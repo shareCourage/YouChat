@@ -215,6 +215,9 @@
 		A9C05DD81B5F657F00FB34B8 /* YCBaseArrowItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C05DD71B5F657F00FB34B8 /* YCBaseArrowItem.m */; };
 		A9C05DDB1B5F659300FB34B8 /* YCBaseSwitchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C05DDA1B5F659300FB34B8 /* YCBaseSwitchItem.m */; };
 		A9C05DDE1B5F6C6300FB34B8 /* YCBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C05DDD1B5F6C6300FB34B8 /* YCBaseCell.m */; };
+		A9F362C21B78A64D004DED58 /* YCChatDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F362C11B78A64D004DED58 /* YCChatDetailController.m */; };
+		A9FF08881B788D740007C035 /* YCAddFriendController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FF08871B788D740007C035 /* YCAddFriendController.m */; };
+		A9FF088B1B789C740007C035 /* NSString+PHCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FF088A1B789C740007C035 /* NSString+PHCategory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -612,6 +615,12 @@
 		A9C05DDA1B5F659300FB34B8 /* YCBaseSwitchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCBaseSwitchItem.m; sourceTree = "<group>"; };
 		A9C05DDC1B5F6C6300FB34B8 /* YCBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCBaseCell.h; sourceTree = "<group>"; };
 		A9C05DDD1B5F6C6300FB34B8 /* YCBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCBaseCell.m; sourceTree = "<group>"; };
+		A9F362C01B78A64D004DED58 /* YCChatDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCChatDetailController.h; sourceTree = "<group>"; };
+		A9F362C11B78A64D004DED58 /* YCChatDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCChatDetailController.m; sourceTree = "<group>"; };
+		A9FF08861B788D740007C035 /* YCAddFriendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCAddFriendController.h; sourceTree = "<group>"; };
+		A9FF08871B788D740007C035 /* YCAddFriendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCAddFriendController.m; sourceTree = "<group>"; };
+		A9FF08891B789C740007C035 /* NSString+PHCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PHCategory.h"; sourceTree = "<group>"; };
+		A9FF088A1B789C740007C035 /* NSString+PHCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PHCategory.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1529,6 +1538,8 @@
 		A986AED11B5753A8006403D3 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				A9FF08891B789C740007C035 /* NSString+PHCategory.h */,
+				A9FF088A1B789C740007C035 /* NSString+PHCategory.m */,
 				A986AED21B5753A8006403D3 /* CategoryWF.h */,
 				A986AED31B5753A8006403D3 /* UIButton+WF.h */,
 				A986AED41B5753A8006403D3 /* UIButton+WF.m */,
@@ -1573,6 +1584,10 @@
 			children = (
 				A986AF441B579FC2006403D3 /* YCContactsController.h */,
 				A986AF451B579FC2006403D3 /* YCContactsController.m */,
+				A9FF08861B788D740007C035 /* YCAddFriendController.h */,
+				A9FF08871B788D740007C035 /* YCAddFriendController.m */,
+				A9F362C01B78A64D004DED58 /* YCChatDetailController.h */,
+				A9F362C11B78A64D004DED58 /* YCChatDetailController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2057,7 +2072,9 @@
 				A986AEA81B574901006403D3 /* XMPPSRVResolver.m in Sources */,
 				A986AE6C1B574901006403D3 /* XMPPMUC.m in Sources */,
 				A986AEB41B574901006403D3 /* DDXMLDocument.m in Sources */,
+				A9F362C21B78A64D004DED58 /* YCChatDetailController.m in Sources */,
 				A986AE4A1B574901006403D3 /* XMPPStream.m in Sources */,
+				A9FF08881B788D740007C035 /* YCAddFriendController.m in Sources */,
 				A986AEAB1B574901006403D3 /* DDAbstractDatabaseLogger.m in Sources */,
 				A986AF5D1B589FC2006403D3 /* YCXMPPTool.m in Sources */,
 				A986AEE41B5753A8006403D3 /* UIStoryboard+WF.m in Sources */,
@@ -2088,6 +2105,7 @@
 				A986AE4F1B574901006403D3 /* XMPPReconnect.m in Sources */,
 				A986AEA11B574901006403D3 /* XMPPMessage+XEP_0308.m in Sources */,
 				A986AE991B574901006403D3 /* XMPPPing.m in Sources */,
+				A9FF088B1B789C740007C035 /* NSString+PHCategory.m in Sources */,
 				A986AE641B574901006403D3 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				A986AE9A1B574901006403D3 /* XMPPAutoTime.m in Sources */,
 				A986AE881B574901006403D3 /* XMPPCapabilities.xcdatamodel in Sources */,

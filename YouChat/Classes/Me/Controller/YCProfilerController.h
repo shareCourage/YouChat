@@ -8,8 +8,16 @@
 
 #import "YCBaseController.h"
 
+@class YCProfilerController;
+@protocol YCProfilerControllerDelegate <NSObject>
 
+@optional
+- (void)profilerControllerDidChanged:(YCProfilerController *)profiler;
+
+@end
 
 @interface YCProfilerController : YCBaseController
+
+@property (nonatomic, assign) id<YCProfilerControllerDelegate>delegate;
 
 @end

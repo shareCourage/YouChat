@@ -12,7 +12,8 @@
 #import "YCBaseItem.h"
 #import "YCBaseArrowItem.h"
 #import "YCProfilerController.h"
-@interface YCMeController ()
+#import "YCBaseCell.h"
+@interface YCMeController ()<YCProfilerControllerDelegate>
 
 @end
 
@@ -27,13 +28,7 @@
     [self setGroupOne:[YCXMPPTool sharedYCXMPPTool].vCardTempModule.myvCardTemp];
     [self setGroupTwo];
 }
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-//    [self.dataSource removeAllObjects];
-//    [self setGroupOne:[YCXMPPTool sharedYCXMPPTool].vCardTempModule.myvCardTemp];
-//    [self.tableView reloadData];
-}
+
 - (void)setGroupOne:(XMPPvCardTemp *)vCardTemp
 {
     NSData *photo = vCardTemp.photo;
@@ -41,7 +36,7 @@
     one.subtitle = [YCUserInfo sharedYCUserInfo].user;
     YCBaseGroup *group = [[YCBaseGroup alloc] init];
     group.items = @[one];
-    [self.dataSource addObject:group];
+    [self.dataSource insertObject:group atIndex:0];
 }
 - (void)setGroupTwo
 {
@@ -54,12 +49,44 @@
     group.items = @[item];
     [self.dataSource addObject:group];
 }
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    YCBaseCell *cell = [YCBaseCell cellWithTableView:tableView style:UITableViewCellStyleSubtitle];
+    YCBaseGroup *group = self.dataSource[indexPath.section];
+    cell.item = group.items[indexPath.row];
+    return cell;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0 && indexPath.row == 0) {
-        return 80.f;
+        return 100.f;
     }
     return 44;
+}
+
+
+- (void)pushVCWithClass:(Class)destClass settingItem:(YCBaseItem *)item
+{
+    // 如果没有需要跳转的控制器
+    if (destClass == nil) return;
+    UIViewController *vc = [[destClass alloc] init];
+    vc.title = item.title;
+    YCProfilerController *profiler = nil;
+    if ([vc isKindOfClass:[YCProfilerController class]]) {
+        profiler = (YCProfilerController *)vc;
+        profiler.delegate = self;
+    }
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+#pragma mark - YCProfilerControllerDelegate
+- (void)profilerControllerDidChanged:(YCProfilerController *)profiler
+{
+    [self.dataSource removeObjectAtIndex:0];
+    [self setGroupOne:[YCXMPPTool sharedYCXMPPTool].vCardTempModule.myvCardTemp];
+    [self.tableView reloadData];
 }
 
 @end
